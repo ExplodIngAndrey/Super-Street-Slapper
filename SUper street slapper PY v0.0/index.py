@@ -1,4 +1,3 @@
-#released on: 2020-05-24 11:35
 from tkinter import *
 import time
 import json
@@ -10,6 +9,7 @@ window = Canvas(tk, width=500, height = 250/1.7)
 window.pack()
 img = PhotoImage(file='load.gif')
 player = PhotoImage(file='player.gif')
+enemy = PhotoImage(file='enemy.gif')
 def image():
         window.create_image(0,0,image=img, anchor='nw')
         print('image called')
@@ -33,8 +33,9 @@ def __init__():
     button.pack()
     print('init called')
 tk.after(5000, __init__) 
-def renderPlayer(playerX):
+def renderAll(playerX, enemyX):
         window.create_image(playerX,0,image=player, anchor='nw')
+        window.create_image(enemyX,0,image=enemy, anchor='nw')
 def loop():
         img = PhotoImage(file="game.gif")
         clear()
@@ -46,7 +47,9 @@ def loop():
 def initgame():
         #eat
         global x
+        global enemyx
         x=0
+        enemyx = 100
         loop()
         print('initgame run')
 def moveleft(event):
