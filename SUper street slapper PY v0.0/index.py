@@ -40,7 +40,7 @@ def loop():
         img = PhotoImage(file="game.gif")
         clear()
         image()
-        renderPlayer(x)
+        renderPlayer(x, enemyx)
         tk.after(10,loop)
         print('loop called')
 
