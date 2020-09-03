@@ -1,5 +1,3 @@
 # Street-Fighter
-Street fighter game. Incomplete.
-So yes this is an interesting python game. So far, we have
-completed the bases + the assets, however everything is
-subject to change.
+Super Street Slapper is a Street Fighter game. It is currently incomplete.
+So far, we have completed the base of the game and the movement controls.
