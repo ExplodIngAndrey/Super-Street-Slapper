@@ -16,15 +16,22 @@ mixer.music.load('BackgroundMusic.wav')
 mixer.music.play(-1)
 
 # Title and Icon
-pygame.display.set_caption('Super Street Slapper')
+pygame.display.set_caption('Street Fighter')
 icon = pygame.image.load('Logo.png')
 pygame.display.set_icon(icon)
 
 # Player
 playerImg = pygame.image.load('Player.png')
 playerX = 0
-playerY = 370
+playerY = 380
 playerXChange = 0
+playerYChange = 0
+
+vel = 5
+height = 100
+
+isJump = False
+jumpCount = 10
 
 # Score
 score_value = 0
@@ -39,19 +46,6 @@ def show_score(x, y):
     score = font.render('Score: ' + str(score_value), True, (255, 255, 255))
     screen.blit(score, (x, y))
 
-def jump():
-    global playerX
-    global playerY
-    for i in range(1, 20):
-        playerY -= 20
-        print('Jumping UP! Current Y: ' + str(playerY))
-    player(int(playerX), int(playerY)) # Shows Player
-    time.sleep(5)
-    for j in range(1, 20):
-        playerY += 20
-        print('Jumping Down. Current Y: ' + str(playerY))
-    player(int(playerX), int(playerY)) # Shows Player
-
 # Game Loop
 running = True
 while running:
@@ -65,21 +59,32 @@ while running:
                 playerXChange = 1
             if event.key == pygame.K_a:
                 playerXChange = -1
-            if event.key == pygame.K_SPACE:
-                jump()
-                
+
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_d or event.key == pygame.K_a or event.key == pygame.K_SPACE:
+            if event.key == pygame.K_d or event.key == pygame.K_a:
                 playerXChange = 0
-    
+
     playerX += playerXChange
-    
+
     # Creates Movement Bounderies
     if playerX <= 0:
         playerX = 0
-    elif playerX >= 600:
-        playerX = 600
+    if playerX >= 770:
+        playerX = 770
 
-    player(int(playerX), int(playerY)) # Shows Player
-    show_score(scoreX, scoreY) # Writes score
-    pygame.display.update() # Updates Screen
+    keys = pygame.key.get_pressed()
+
+    if not(isJump):
+        if keys[pygame.K_SPACE]:
+            isJump = True
+    else:
+        if jumpCount >= -10:
+            playerY -= (jumpCount * abs(jumpCount)) * 0.5
+            jumpCount -= 1
+        else:
+            jumpCount = 10
+            isJump = False
+
+    player(playerX, playerY)  # Shows Player
+    show_score(scoreX, scoreY)  # Writes score
+    pygame.display.update()  # Updates Screen
