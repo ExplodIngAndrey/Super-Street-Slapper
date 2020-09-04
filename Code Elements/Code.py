@@ -18,7 +18,6 @@ mixer.music.play(-1)
 # ID Sounds
 coinSound = mixer.Sound('Coin.wav')
 fallingSound = mixer.Sound('Falling.wav')
-walkingSound = mixer.Sound('Footsteps.wav')
 jumpSound = mixer.Sound('Jump.wav')
 menuSelectSound = mixer.Sound('MenuSelect.wav')
 pauseSound = mixer.Sound('Pause.wav')
@@ -71,10 +70,8 @@ while running:
             running = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_d:
-                walkingSound.play()
                 playerXChange = 1
             if event.key == pygame.K_a:
-                walkingSound.play()
                 playerXChange = -1
 
         if event.type == pygame.KEYUP:
