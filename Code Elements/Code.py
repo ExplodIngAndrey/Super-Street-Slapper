@@ -23,7 +23,7 @@ pygame.display.set_icon(icon)
 # Player
 playerImg = pygame.image.load('Player.png')
 playerX = 0
-playerY = 380
+playerY = 370
 playerXChange = 0
 
 # Score
@@ -40,12 +40,17 @@ def show_score(x, y):
     screen.blit(score, (x, y))
 
 def jump():
-  for x in range(1,20):
-    time.sleep(0.05)
-    playerY -= 0.1
-  for x in range(1,20):
-    time.sleep(0.01)
-    playerY += 0.1
+    global playerX
+    global playerY
+    for i in range(1, 20):
+        playerY -= 20
+        print('Jumping UP! Current Y: ' + str(playerY))
+    player(int(playerX), int(playerY)) # Shows Player
+    time.sleep(5)
+    for j in range(1, 20):
+        playerY += 20
+        print('Jumping Down. Current Y: ' + str(playerY))
+    player(int(playerX), int(playerY)) # Shows Player
 
 # Game Loop
 running = True
@@ -75,6 +80,6 @@ while running:
     elif playerX >= 600:
         playerX = 600
 
-    player(playerX, playerY) # Shows Player
+    player(int(playerX), int(playerY)) # Shows Player
     show_score(scoreX, scoreY) # Writes score
     pygame.display.update() # Updates Screen
