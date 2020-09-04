@@ -25,13 +25,16 @@ playerImg = pygame.image.load('Player.png')
 playerX = 0
 playerY = 380
 playerXChange = 0
-playerYChange = 0
-
 vel = 5
 height = 100
-
 isJump = False
 jumpCount = 10
+
+# Enemy
+enemyImg = pygame.image.load('Enemy.png')
+enemyX = 600
+enemyY = 400
+enemyXChange = 0
 
 # Score
 score_value = 0
@@ -41,6 +44,9 @@ scoreY = 20
 
 def player(x, y):
     screen.blit(playerImg, (x, y))
+
+def enemy(x, y):
+    screen.blit(enemyImg, (x, y))
 
 def show_score(x, y):
     score = font.render('Score: ' + str(score_value), True, (255, 255, 255))
@@ -86,5 +92,6 @@ while running:
             isJump = False
 
     player(playerX, playerY)  # Shows Player
+    enemy(enemyX, enemyY) # Shows Enemy
     show_score(scoreX, scoreY)  # Writes score
     pygame.display.update()  # Updates Screen
