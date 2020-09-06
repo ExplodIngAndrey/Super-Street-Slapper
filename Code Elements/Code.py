@@ -11,9 +11,9 @@ screen = pygame.display.set_mode((800, 600))
 # Background
 background = pygame.image.load('Background.png')
 
-# Background Sound
-mixer.music.load('BackgroundMusic.wav')
-mixer.music.play(-1)
+# # Background Sound
+# mixer.music.load('BackgroundMusic.wav')
+# mixer.music.play(-1)
 
 # ID Sounds
 coinSound = mixer.Sound('Coin.wav')
@@ -32,7 +32,6 @@ pygame.display.set_icon(icon)
 playerImg = pygame.image.load('Player.png')
 playerX = 0
 playerY = 380
-playerXChange = 0
 vel = 5
 height = 100
 isJump = False
@@ -44,11 +43,11 @@ enemyX = 600
 enemyY = 400
 enemyXChange = 0
 
-# Score
-score_value = 0
+# Xp
+xp_value = 0
 font = pygame.font.Font('freesansbold.ttf', 32)
-scoreX = 20
-scoreY = 20
+xpX = 20
+xpY = 20
 
 def player(x, y):
     screen.blit(playerImg, (x, y))
@@ -56,9 +55,9 @@ def player(x, y):
 def enemy(x, y):
     screen.blit(enemyImg, (x, y))
 
-def show_score(x, y):
-    score = font.render('Score: ' + str(score_value), True, (255, 255, 255))
-    screen.blit(score, (x, y))
+def show_xp(x, y):
+    xp = font.render('Xp: ' + str(xp_value), True, (255, 255, 255))
+    screen.blit(xp, (x, y))
 
 # Game Loop
 running = True
@@ -77,8 +76,6 @@ while running:
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_d or event.key == pygame.K_a:
                 playerXChange = 0
-
-    playerX += playerXChange
 
     # Creates Movement Bounderies
     if playerX <= 0:
@@ -102,5 +99,5 @@ while running:
 
     player(playerX, playerY)  # Shows Player
     enemy(enemyX, enemyY) # Shows Enemy
-    show_score(scoreX, scoreY)  # Writes score
+    show_xp(xpX, xpY)  # Writes xp
     pygame.display.update()  # Updates Screen
