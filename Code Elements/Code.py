@@ -32,6 +32,7 @@ pygame.display.set_icon(icon)
 playerImg = pygame.image.load('Player.png')
 playerX = 0
 playerY = 380
+playerXChange = 0
 vel = 5
 height = 100
 isJump = False
@@ -41,7 +42,6 @@ jumpCount = 10
 enemyImg = pygame.image.load('Enemy.png')
 enemyX = 600
 enemyY = 400
-enemyXChange = 0
 
 # Xp
 xp_value = 0
@@ -76,6 +76,8 @@ while running:
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_d or event.key == pygame.K_a:
                 playerXChange = 0
+    
+    playerX += playerXChange
 
     # Creates Movement Bounderies
     if playerX <= 0:
